@@ -47,10 +47,11 @@ export default class ImageUpload extends Component {
     _handleSubmit = async e => {
         e.preventDefault();
         let file = this.state.file;
+        const URI = 'http://localhost:4000/api/test';// Then I put it in an environment variable in an environment variable
         const fd = new FormData();
         fd.append('image', file);
         if (file != '') {
-            const res = await axios.post('http://localhost:4000/api/test', fd);
+            const res = await axios.post(URI, fd);
             this.setState({
                 match: res
             });
@@ -64,8 +65,8 @@ export default class ImageUpload extends Component {
     render() {
 
         let { imagePreviewUrl } = this.state;
-        let $imagePreview = (<img src={require('./282x267.jpg')} className="contenedor" alt="" />);
-        let $imagePreview1 = (<img src={require('./204x148.jpg')} className="contenedor2" alt="" />);
+        let $imagePreview = (<img src={require('./images/282x267.jpg')} className="contenedor" alt="" />);
+        let $imagePreview1 = (<img src={require('./images/204x148.jpg')} className="contenedor2" alt="" />);
         let $nameImage = this.state.name;
         let $sizeImage = this.state.size;
         let $typeImage = this.state.type;
@@ -75,7 +76,7 @@ export default class ImageUpload extends Component {
         if (imagePreviewUrl) {
             $imagePreview = (<img src={imagePreviewUrl} className="contenedor" alt="" />);
             $imagePreview1 = (<img src={imagePreviewUrl} className="contenedor2" alt="" />);
-            $wait =(<img src={require('./devoops.gif')} alt="" />);
+            $wait =(<img src={require('./images/devoops.gif')} alt="" />);
         }
         if ($macth != 'Wating..'){
             $wait =''  
